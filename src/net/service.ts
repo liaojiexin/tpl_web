@@ -2,8 +2,9 @@ import { AxiosResponse } from 'axios';
 import { LoginParams, RpaParams, RidParmas } from './index';
 import request from './request';
 
+//登录接口
 export const login = (params: LoginParams) => {
-  return request('/api/login', {
+  return request('/api/tplprint/system/login', {
     method: 'POST',
     data: params,
   });
