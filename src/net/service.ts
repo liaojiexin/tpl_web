@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { LoginParams, RpaParams, RidParmas } from './index';
+import { LoginParams, RpaParams, RidParmas, PageParam } from './index';
 import request from './request';
 
 //登录接口
@@ -10,9 +10,11 @@ export const login = (params: LoginParams) => {
   });
 };
 
-export const selectAll = () => {
-  return request('/api/selectAll', {
+//查询所有用户信息
+export const selectAllUser = (params: PageParam) => {
+  return request('/api/tplprint/system/selectAllUser', {
     method: 'GET',
+    data: params,
   });
 };
 

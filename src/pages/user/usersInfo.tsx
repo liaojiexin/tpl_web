@@ -8,13 +8,17 @@ class  UsersInfo extends  React.Component<any, any>{
 
   render() {
     return(
-      <div>
-        <div>
+      <div className={styles.div1}>
+        <div className={styles.div2}>
           <table className={styles.table}>
-            <tr>
-              <th className={styles.th}>1111</th>
+            <tr className={styles.tr}>
+              <th className={styles.th}>用户id</th>
+              <th className={styles.th}>账号</th>
+              <th className={styles.th}>用户名称</th>
             </tr>
-            <tr>
+            <tr className={styles.tr}>
+              <td className={styles.td}>222</td>
+              <td className={styles.td}>222</td>
               <td className={styles.td}>222</td>
             </tr>
           </table>
