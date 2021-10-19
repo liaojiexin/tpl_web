@@ -19,7 +19,7 @@ const Login: React.FC<{}> = () => {
     console.log('onFinish', values);
     const { username, password } = values;
     login({ username, password }).then(res=>{
-      console.log("==",res); // 登录结果
+      console.log("res",res); // 登录结果
 
       const { code,body } = res as any;
       if(code === 0) {
@@ -52,7 +52,7 @@ const Login: React.FC<{}> = () => {
               <Form.Item
                 name="username"
                 rules={[
-                  { required: true, message: 'Please input your username!' },
+                  { required: true, message: '请输入你的账号!' },
                 ]}
               >
                 <Input placeholder="请输入用户名/手机号/邮箱"/>
@@ -61,7 +61,7 @@ const Login: React.FC<{}> = () => {
               <Form.Item
                 name="password"
                 rules={[
-                  { required: true, message: 'Please input your password!' },
+                  { required: true, message: '请输入你的密码!' },
                 ]}
               >
                 <Input.Password placeholder="请输入密码"/>

@@ -4,7 +4,7 @@ import  styles from  './header.less';
 class Header extends React.Component {
   render() {
     return ( <div className={styles.header}>
-      hello header
+      头部
     </div> )
   }
 }

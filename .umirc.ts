@@ -28,6 +28,7 @@ export default defineConfig({
             { path: '/', redirect: '/index' },
             { path: '/index', component: '@/pages/index' },
             { path: '/test', component: '@/pages/test' },
+            { path: '/usersInfo', component: '@/pages/user/usersInfo' },
           ],
         },
       ],
