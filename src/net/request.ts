@@ -33,6 +33,9 @@ const errorHandler = (error: { response: Response }) => {
       message: `Request error ${status}: ${url}`,
       description: errorText,
     });
+    if(response.status === 401) {
+      location.href='/login'
+    }
   } else if (!response) {
     notification.error({
       description: 'Your network is abnormal and cannot connect to the server',
@@ -52,10 +55,12 @@ var Request = axios.create({
 // 添加请求拦截器
 Request.interceptors.request.use(
   function (config) {
-    const token = localStorage.getItem('rpa-token');
-    if (token) {
+    const { url } = config;
+    const pass = /login/.test(url as string);
+    const token = localStorage.getItem('token');
+    if (!pass && token) {
       // @ts-ignore
-      config.headers.common['token'] = token;
+      config.headers.common['Authorization'] = token;
     }
     return config;
   },
@@ -73,7 +78,7 @@ Request.interceptors.response.use(function (response) {
   */
   // console.log('Request.interceptors.response', response.data);
 
-  return response.data;
+  return response;
 }, errorHandler);
 
 export default Request;

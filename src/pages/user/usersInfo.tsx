@@ -1,9 +1,23 @@
 import { Table, Tag, Space } from 'antd';
 import React from 'react';
-import { Users } from '@/pages/interface/interface';
+import { PageParam } from '@/net/index';
 import styles from '@/pages/user/usersInfo.less';
+import { selectAllUser, deleteUser, updateUser } from '@/net/service';
+import addOrUpdateUser from '@/pages/user/addOrUpdateUser';
+type  Props = {
 
-class UsersInfo extends React.Component<any, any> {
+}
+class UsersInfo extends React.Component<Props, any> {
+  constructor(props:Props) {
+    super(props);
+    // 不要在这里调用 this.setState()
+    this.state = {
+      datasource:[],
+      pageSize:10,
+      pageNum:1
+    };
+  }
+
   columns = [
     {
       title: '用户id',
@@ -23,39 +37,62 @@ class UsersInfo extends React.Component<any, any> {
     {
       title: '操作',
       key: 'action',
-      render: () => (
+      render: (t:any,r:any) => (
         <Space size="middle">
-          <a>修改</a>
-          <a>删除</a>
+          <a href="/addOrUpdateUser">修改</a>
+          <a href="javascript:void(0)" onClick={() => this.handleDel(r.uid)}>删除</a>
         </Space>
       ),
     },
   ];
 
-  data = [
-    {
-      key: '1',
-      uid: 'id1',
-      username: '111',
-      uname: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      uid: 'id2',
-      username: '111',
-      uname: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      uid: 'id2',
-      username: '111',
-      uname: 'Sidney No. 1 Lake Park'
-    },
-  ];
+  // 编辑
+  handleEdit (user:any) {
+    updateUser(user).then(res=>{
+
+    })
+  }
+  // 删除
+  handleDel (uid:string) {
+    const confirmed = window.confirm(`确定要删除该用户吗？`); // confirm 无法识别,需要加 window.
+    if (confirmed) {
+      deleteUser(uid)
+        .then(res => {
+          this.selectAll(10, 1);
+          alert('删除用户成功');
+        })
+        .catch(err => {
+          console.error(err);
+          alert('删除用户失败');
+        });
+    }
+  }
+
+  //已进入页面就调用
+   componentDidMount() {
+     this.selectAll(10, 1);
+   }
+
+   //查询所有用户数据
+  selectAll(pageSize:number,pageNum:number) {
+    let params: PageParam = {
+      pageNum: pageNum,
+      pageSize: pageSize,
+    };
+    selectAllUser(params).then(res=>{
+      console.log("1",res)
+      const { code, body } = res.data as any
+      const { total,pageSize,pageNum,content} =body as any
+      this.setState({
+        datasource: content
+      })
+    });
+  }
 
   render() {
+    const { datasource } = this.state;
     return (
-      <Table columns={this.columns} dataSource={this.data} className={styles.table}/>
+      <Table columns={this.columns} dataSource={datasource} className={styles.table} rowKey={(r)=>r.uid}/>
     );
   }
 };

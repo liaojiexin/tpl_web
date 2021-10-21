@@ -15,7 +15,9 @@ const BasicLayout: React.FC<Props> = (props) => {
   if (!isLogin()) {
     return <Redirect to="/login" />;
   }
-
+/*  const errorToken=()=>{
+    return
+  }*/
   return (
     <div className={style.main}>
       <Header />

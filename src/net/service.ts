@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { LoginParams, RpaParams, RidParmas, PageParam } from './index';
+import { LoginParams, RpaParams, RidParmas, PageParam ,User } from './index';
 import request from './request';
 
 //登录接口
@@ -14,7 +14,26 @@ export const login = (params: LoginParams) => {
 export const selectAllUser = (params: PageParam) => {
   return request('/api/tplprint/system/selectAllUser', {
     method: 'GET',
-    data: params,
+    params: params,
+  });
+};
+
+//删除用户
+export const deleteUser =(params :string)=>{
+  let fm = new FormData();
+  fm.append("uid",params)
+  return request('/api/tplprint/system/deleteUser', {
+    method: 'POST',
+    data:fm
+  });
+
+};
+
+//修改用户
+export const updateUser=(params :User)=>{
+  return request('/api/tplprint/system/updateUser',{
+    method: 'POST',
+    data:params
   });
 };
 

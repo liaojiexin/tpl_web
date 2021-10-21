@@ -21,10 +21,10 @@ const Login: React.FC<{}> = () => {
     login({ username, password }).then(res=>{
       console.log("res",res); // 登录结果
 
-      const { code,body } = res as any;
+      const { code,body } = res.data as any;
       if(code === 0) {
         localStorage.setItem("token",body)
-        history.push('/')
+        history.push('/usersInfo')
       }
     })
     // userLogin({ username, password });
@@ -78,6 +78,9 @@ const Login: React.FC<{}> = () => {
                 <Form.Item className={styles.loginbottomitem}>
                   <div className={styles.loginforget}>
                     <a>忘记密码</a>
+                  </div>
+                  <div className={styles.loginforget}>
+                    <a>注册账户</a>
                   </div>
                 </Form.Item>
               </div>
