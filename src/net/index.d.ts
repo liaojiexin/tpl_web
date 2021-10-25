@@ -20,9 +20,9 @@ export type PageParam = {
 };
 
 export type User = {
-  uid: number;   //用户id
-  username: String;    //账户
-  password: String;     //密码
-  oldpassword: String;  //旧密码
-  uname: String;    //用户名称
+  uid?: number;   //用户id
+  username?: String;    //账户
+  password?: String;     //密码
+  oldpassword?: String;  //旧密码
+  uname?: String;    //用户名称
 };

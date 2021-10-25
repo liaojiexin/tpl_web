@@ -37,6 +37,14 @@ export const updateUser=(params :User)=>{
   });
 };
 
+//注册用户
+export const addUser=(params :User)=>{
+  return request('/api/tplprint/system/register',{
+    method: 'POST',
+    data: params
+  });
+}
+
 export const insertSelective = (params: RpaParams) => {
   return request('/api/insertSelective', {
     method: 'POST',
