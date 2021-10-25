@@ -29,7 +29,6 @@ export default defineConfig({
             { path: '/index', component: '@/pages/index' },
             { path: '/test', component: '@/pages/test' },
             { path: '/usersInfo', component: '@/pages/user/usersInfo' },
-            { path: '/addOrUpdateUser', component: '@/pages/user/addOrUpdateUser' },
           ],
         },
       ],

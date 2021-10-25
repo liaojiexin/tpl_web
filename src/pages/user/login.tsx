@@ -80,7 +80,7 @@ const Login: React.FC<{}> = () => {
                     <a>忘记密码</a>
                   </div>
                   <div className={styles.loginforget}>
-                    <a>注册账户</a>
+                    <a href="javascript:void(0)">注册账户</a>
                   </div>
                 </Form.Item>
               </div>
